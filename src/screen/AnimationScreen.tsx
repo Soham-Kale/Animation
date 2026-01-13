@@ -1,9 +1,10 @@
 import { useRef } from "react";
-import { Animated, Button, ScrollView, StyleSheet, Text, View } from "react-native"
+import { Animated, Button, Easing, ScrollView, StyleSheet, Text, View } from "react-native"
 
 const AnimationScreen: React.FC = () => {
 
     const fadeAnim = useRef(new Animated.Value(0)).current;
+    const translateAnim = useRef(new Animated.Value(0)).current;
 
     const handleFadeIn = () => {
         Animated.timing(fadeAnim, {
@@ -18,6 +19,15 @@ const AnimationScreen: React.FC = () => {
             toValue: 0,
             duration: 1000,
             useNativeDriver: true
+        }).start();
+    }
+
+    const handleTranslate = () => {
+        Animated.timing(translateAnim, {
+            toValue: 100,
+            duration: 1000,
+            easing: Easing.bezier(0.25, 0.1, 0.25, 0.1),
+            useNativeDriver: true,
         }).start();
     }
 
@@ -39,6 +49,24 @@ const AnimationScreen: React.FC = () => {
                     <Button onPress={handleFadeOut} title='Fade Out'/>
                 </View>
             </View>
+
+            {/* Translate Animation Demo */}
+            <View style={styles.demoContainer}>
+                <Animated.View style={[
+                    styles.box,
+                    styles.translateBox,
+                    {
+                        transform: [
+                            {
+                                translateX: translateAnim
+                            }
+                        ]
+                    },
+                ]}></Animated.View>
+
+                <Button onPress={handleTranslate} title="Translate"/>
+            </View>
+
         </ScrollView>
     )
 }
@@ -80,10 +108,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.5,
         elevation: 5,
-        // backgroundColor: "red",
     },
     opacityBox: {
         backgroundColor: "#3498db"
+    },
+    translateBox: {
+        backgroundColor: "#75e758"
     }
 });
 

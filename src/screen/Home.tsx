@@ -8,11 +8,6 @@ const topics = [
         title: "Animation",
         screen: "AnimationScreenDemo"
     },
-    {
-        id: 2,
-        title: "Animatio  gffgddns",
-        screen: "Animation Scrklen jkn"
-    },
 ]
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
