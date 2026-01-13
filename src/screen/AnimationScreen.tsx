@@ -7,7 +7,7 @@ const AnimationScreen: React.FC = () => {
 
             {/* fade Animation Demo */}
             <View style={styles.demoContainer}>
-                <View>
+                <View style={[styles.box]}>
 
                 </View>
 
@@ -42,6 +42,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         width: "100%",
         marginTop: 10,
+    },
+    box: {
+        width: "100%",
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        marginVertical: 10,
+
     }
 });
 
