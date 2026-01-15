@@ -5,6 +5,7 @@ const AnimationScreen: React.FC = () => {
 
     const fadeAnim = useRef(new Animated.Value(0)).current;
     const translateAnim = useRef(new Animated.Value(0)).current;
+    const scaleAnim = useRef(new Animated.Value(1)).current;
 
     const handleFadeIn = () => {
         Animated.timing(fadeAnim, {
@@ -29,6 +30,21 @@ const AnimationScreen: React.FC = () => {
             easing: Easing.bezier(0.25, 0.1, 0.25, 0.1),
             useNativeDriver: true,
         }).start();
+    }
+
+    const handleScale = () => {
+        Animated.sequence([
+            Animated.timing(scaleAnim, {
+                toValue: 2,
+                duration: 500,
+                useNativeDriver: true
+            }),
+            Animated.timing(scaleAnim, {
+                toValue: 1,
+                duration: 500,
+                useNativeDriver: true
+            }),
+        ]).start()
     }
 
     return(
@@ -71,6 +87,19 @@ const AnimationScreen: React.FC = () => {
 
             {/* Scale Animation Demo */}
             <Text style={styles.header}>Scale Demo</Text>
+            <Animated.View style={[
+                    styles.box,
+                    styles.scaleBox,
+                    {
+                        transform: [
+                            {
+                                scale: scaleAnim
+                            }
+                        ]
+                    }
+                ]}></Animated.View>
+                <Button onPress={handleScale} title="Scale"/>
+
 
         </ScrollView>
     )
@@ -119,6 +148,9 @@ const styles = StyleSheet.create({
     },
     translateBox: {
         backgroundColor: "#75e758"
+    },
+    scaleBox: {
+        backgroundColor: "#bf7be7"
     }
 });
 
