@@ -22,6 +22,7 @@ export const Home: React.FC<Props> = ({navigation}) => {
         <View>
             <FlatList
                 data={topics}
+                style={style.flatlist}
                 renderItem={({item}) => (
                     <TouchableOpacity
                         onPress={() => navigation.navigate(item.screen as keyof RootStackParamList)}
@@ -49,5 +50,8 @@ const style = StyleSheet.create({
     topicText: {
         fontSize: 18,
         fontWeight: "bold",
+    },
+    flatlist: {
+        padding: 20
     }
 });

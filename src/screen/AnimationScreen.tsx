@@ -51,6 +51,8 @@ const AnimationScreen: React.FC = () => {
             </View>
 
             {/* Translate Animation Demo */}
+            <Text style={styles.header}>Translate Demo</Text>
+
             <View style={styles.demoContainer}>
                 <Animated.View style={[
                     styles.box,
@@ -66,6 +68,9 @@ const AnimationScreen: React.FC = () => {
 
                 <Button onPress={handleTranslate} title="Translate"/>
             </View>
+
+            {/* Scale Animation Demo */}
+            <Text style={styles.header}>Scale Demo</Text>
 
         </ScrollView>
     )
